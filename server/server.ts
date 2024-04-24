@@ -164,7 +164,8 @@ app.get("/recentPosts", async (req, res) => {
 					comments: true,
 					likes: true,
 				}
-			}
+			},
+			likes: true,
 		}
 	});
 

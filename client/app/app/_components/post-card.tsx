@@ -6,10 +6,9 @@ import {
 	AvatarImage,
 } from '@/components/ui/avatar';
 import { Button } from "@/components/ui/button";
-import { Heart, MessageCircle, Share2 } from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import Link from "next/link";
 import ShareButton from "./share-button";
-import { likePost } from "@/lib/api";
 import LikeButton from "./like-button";
 import { Skeleton } from "@/components/ui/skeleton";
 
@@ -66,7 +65,7 @@ const PostCard = ({ post }: PostCardProps) => {
 								</span>
 							</Link>
 						</Button>
-						<LikeButton likes={post._count.likes} postId={post.id} />
+						<LikeButton likes={post.likes} postId={post.id} />
 					</div>
 				</div>
 			</div>

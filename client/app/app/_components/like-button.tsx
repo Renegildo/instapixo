@@ -7,11 +7,12 @@ import { Heart } from "lucide-react";
 import { useEffect, useState } from "react";
 
 interface LikeButtonProps {
-	likes: number;
+	likes: Like[];
 	postId: string;
-}
+};
 
 const LikeButton = ({ likes, postId }: LikeButtonProps) => {
+	const [self, setSelf] = useState(null);
 	const [isLiked, setIsLiked] = useState<boolean>(false);
 
 	const onLike = async () => {
@@ -25,14 +26,22 @@ const LikeButton = ({ likes, postId }: LikeButtonProps) => {
 	}
 
 	useEffect(() => {
-		const initHasLiked = async () => {
+		const initSelfAndIsLiked = async () => {
 			const token = getCookie("token");
-			const hasLiked = await hasLikedPost(postId, token);
-			setIsLiked(hasLiked);
+			const newSelf = await getSelf(token);
+
+			for (let i = 0; i < likes.length; i++) {
+				if (likes[i].likerId === newSelf.id) {
+					setIsLiked(true);
+					break;
+				}
+			}
+
+			setSelf(newSelf);
 		};
 
-		initHasLiked();
-	}, [postId])
+		initSelfAndIsLiked();
+	}, [likes])
 
 	return (
 		<Button
@@ -45,7 +54,7 @@ const LikeButton = ({ likes, postId }: LikeButtonProps) => {
 				isLiked && "fill-white"
 			)} />
 			<span className="font-semibold text-lg">
-				{likes}
+				{likes.length}
 			</span>
 		</Button>
 	);
