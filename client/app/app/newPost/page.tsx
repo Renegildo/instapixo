@@ -6,6 +6,8 @@ import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
 import { createPost, getSelf, uploadImage } from "@/lib/api";
 import { getCookie } from "@/lib/utils";
+import { UploadCloud } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, useEffect, useState } from "react";
 
@@ -16,11 +18,36 @@ const NewPost = () => {
 	const [imageUrl, setImageUrl] = useState<string>('');
 	const [ownerId, setOwnerId] = useState<string>('');
 	const [imageFile, setImageFile] = useState<File | null>(null);
+	const [previewImage, setPreviewImage] = useState<string>('');
 
 	const { toast } = useToast();
 
 	const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+
+		if (!content && !imageFile) {
+			return toast({
+				description: "Provide a post content and a image and try again"
+			});
+		}
+
+		if (!content) {
+			return toast({
+				description: "Provide a post content and try again"
+			});
+		}
+
+		if (!imageFile) {
+			return toast({
+				description: "Provide a image and try again"
+			});
+		}
+
+		if (content.length > 100) {
+			return toast({
+				description: "Content too long, make it smaller and try again"
+			});
+		}
 
 		if (imageFile) {
 			const uploadResponse = await uploadImage(imageFile, v4());
@@ -34,8 +61,17 @@ const NewPost = () => {
 				description: `${postResponse.msg}`
 			});
 		}
-		const postResponse = await createPost(content, ownerId, imageUrl);
-		console.log(postResponse);
+
+		try {
+			const postResponse = await createPost(content, ownerId, imageUrl);
+			toast({
+				description: `${postResponse.msg}`
+			});
+		} catch (error) {
+			toast({
+				description: `Something went wrong, please try again`
+			});
+		}
 	};
 
 	useEffect(() => {
@@ -62,23 +98,38 @@ const NewPost = () => {
 						<Label htmlFor="content">
 							Post content
 						</Label>
-						<Input placeholder="Post content" name="content" onChange={(e) => setContent(e.target.value)} />
+						<Input placeholder="Post content" id="content" onChange={(e) => setContent(e.target.value)} />
 					</div>
-					<div>
+					<label className="relative aspect-square" htmlFor="image">
 						<Label htmlFor="image">
 							Image
 						</Label>
+						<div className="h-[calc(100%-24px)] w-full bg-slate-800 rounded-md flex flex-col items-center justify-center text-muted-foreground font-semibold text-lg cursor-pointer border-dashed border-4 border-slate-700">
+							<p>
+								Click to add image
+							</p>
+							<UploadCloud className="h-10 w-10" />
+						</div>
 						<Input
 							id="image"
 							name="image"
 							type="file"
-							className=""
+							className="hidden"
 							onChange={(e) => {
 								if (!e.target.files) return;
-								setImageFile(e.target.files[0])
+								setImageFile(e.target.files[0]);
+								setPreviewImage(URL.createObjectURL(e.target.files[0]));
 							}}
 						/>
-					</div>
+						{previewImage && (
+							<Image
+								src={previewImage}
+								fill
+								alt="preview image"
+								className="object-cover rounded-md cursor-pointer"
+							/>
+						)}
+					</label>
 					<Button type="submit">
 						Create post
 					</Button>
