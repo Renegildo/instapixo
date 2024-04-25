@@ -11,10 +11,11 @@ import {
 } from "@/components/ui/dialog";
 import UploadImage from "./upload-image";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { LegacyRef, MutableRefObject, useRef, useState } from "react";
 import { updateUser, uploadImage } from "@/lib/api";
 import { v4 } from "uuid";
 import { getCookie } from "@/lib/utils";
+import { toast } from "@/components/ui/use-toast";
 
 interface AvatarPictureProps {
 	username: string;
@@ -25,17 +26,28 @@ const AvatarPicture = ({
 	imageUrl,
 	username,
 }: AvatarPictureProps) => {
+	const [isPending, setIsPending] = useState<boolean>(false);
 	const [imageFile, setImageFile] = useState<File | null>(null);
+
+	const closeRef = useRef<HTMLButtonElement | null>(null);
 
 	const handleSaveChanges = async () => {
 		if (imageFile) {
+			setIsPending(true);
+
 			const token = getCookie("token");
 
 			const uploadResponse = await uploadImage(imageFile, v4());
 			const response = await updateUser(token, {
 				imageUrl: "http://localhost:3333/uploads/" + uploadResponse.imageId + uploadResponse.extName,
 			});
-			console.log(response);
+			toast({
+				description: response.msg,
+			});
+			if (closeRef.current) {
+				closeRef.current.click();
+			}
+			setIsPending(false);
 		}
 	};
 
@@ -59,10 +71,17 @@ const AvatarPicture = ({
 				</div>
 				<DialogFooter className="flex flex-row items-end justify-end gap-x-3">
 					<DialogClose asChild>
-						<Button variant="ghost">Cancel</Button>
+						<Button
+							variant="ghost"
+							ref={closeRef}
+							disabled={isPending}
+						>
+							Cancel
+						</Button>
 					</DialogClose>
 					<Button
 						onClick={handleSaveChanges}
+						disabled={isPending}
 					>
 						Save Changes
 					</Button>
