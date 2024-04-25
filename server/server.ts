@@ -7,7 +7,7 @@ import bcrypt from 'bcrypt'
 import { sign } from 'jsonwebtoken';
 import session from 'express-session';
 import cors from 'cors';
-import multer from 'multer';
+import multhttps://instapixo.vercel.app/r from 'muhttps://instapixo.vercel.app/ter';
 import path from 'path';
 
 dotenv.config();
@@ -75,7 +75,7 @@ passport.use(new JwtStrategy({
 // Middleware
 // ==========
 app.use(cors({
-	origin: "*",
+	origin: "https://instapixo.vercel.app/",
 	credentials: true,
 }));
 app.use(session({
