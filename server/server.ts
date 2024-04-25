@@ -13,7 +13,7 @@ import path from 'path';
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 80;
+const port = process.env.PORT || 3333;
 
 const db = new PrismaClient();
 
