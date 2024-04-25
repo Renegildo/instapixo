@@ -3,5 +3,4 @@ client/.next
 client/.env.local
 
 server/node_modules
-server/uploads/**
 server/.env
