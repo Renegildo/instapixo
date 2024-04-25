@@ -43,7 +43,7 @@ const PostCard = ({ post }: PostCardProps) => {
 					>
 						<div className="flex items-center gap-x-2">
 							<Avatar>
-								<AvatarImage src={post.owner.username} />
+								<AvatarImage src={post.owner.imageUrl} />
 								<AvatarFallback>{`${post.owner.username[0].toUpperCase()}${post.owner.username[1].toLowerCase()}`}</AvatarFallback>
 							</Avatar>
 							<div>

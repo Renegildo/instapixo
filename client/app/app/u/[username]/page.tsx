@@ -2,6 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { getFollowers, getFollowings, getUserByUsername } from "@/lib/api";
 import PostsList from "./_components/posts-list";
 import Actions from "./_components/actions";
+import AvatarPicture from "./_components/avatar-picture";
 
 interface UserDetailsProps {
 	params: {
@@ -26,13 +27,7 @@ const UserDetails = async ({ params }: UserDetailsProps) => {
 	return (
 		<main>
 			<div className="flex flex-col items-center w-full mt-10">
-				<Avatar className="w-20 h-20">
-					<AvatarFallback>
-						{user.username[0].toUpperCase()}
-						{user.username[1].toLowerCase()}
-					</AvatarFallback>
-					<AvatarImage src="" />
-				</Avatar>
+				<AvatarPicture username={username} imageUrl={user.imageUrl} />
 				<h1 className="font-bold text-2xl text-center">
 					{user.username}
 				</h1>

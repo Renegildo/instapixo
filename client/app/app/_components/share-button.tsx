@@ -27,7 +27,7 @@ const ShareButton = ({ postId }: ShareButtonProps) => {
 				</DialogTrigger>
 				<DialogContent className="bg-slate-900">
 					<DialogHeader>
-						<DialogTitle>Your share link:</DialogTitle>
+						<DialogTitle>Share this post:</DialogTitle>
 					</DialogHeader>
 					<div className="flex items-center gap-x-4">
 						<Input disabled placeholder="Share link" value={shareLink} />

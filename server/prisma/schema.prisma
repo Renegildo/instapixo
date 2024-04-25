@@ -19,6 +19,7 @@ model User {
    username String    @unique
    password String
    bio      String    @default("")
+   imageUrl String    @default("")
    posts    Post[]
    likes    Like[]
    comments Comment[]

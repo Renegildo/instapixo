@@ -23,7 +23,7 @@ const ProfilePicture = ({ self }: ProfilePictureProps) => {
 			<DropdownMenu>
 				<DropdownMenuTrigger>
 					<Avatar>
-						<AvatarImage src={self.username} />
+						<AvatarImage src={self.imageUrl} />
 						<AvatarFallback>
 							{self.username[0].toUpperCase()}
 							{self.username[1].toLowerCase()}

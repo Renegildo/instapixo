@@ -157,6 +157,7 @@ app.get("/recentPosts", async (req, res) => {
 			owner: {
 				select: {
 					username: true,
+					imageUrl: true,
 				}
 			},
 			_count: {
@@ -190,6 +191,7 @@ app.get("/post/:postId", async (req, res) => {
 					posts: true,
 					updatedAt: true,
 					username: true,
+					imageUrl: true,
 				}
 			},
 			imageUrl: true,
@@ -217,6 +219,7 @@ app.get("/comments/:postId", async (req, res) => {
 				select: {
 					username: true,
 					id: true,
+					imageUrl: true,
 				}
 			}
 		}
@@ -330,6 +333,19 @@ app.get("/user/:username", async (req, res) => {
 
 	res.json({ user });
 });
+
+app.put("/user", passport.authenticate("jwt"), express.json(), async (req, res) => {
+	const userId = req.user!.id;
+
+	const response = await db.user.update({
+		where: { id: userId },
+		data: {
+			...req.body.payload,
+		},
+	});
+
+	res.json({ msg: "User updated successfully" });
+})
 
 // =============
 // Follow routes

@@ -81,7 +81,6 @@ export const uploadImage = async (image: File, imageId: string) => {
 			}
 		},
 	);
-	console.log(response);
 
 	return response.data;
 };
@@ -244,4 +243,20 @@ export const removeComment = async (commentId: string, token: string) => {
 	);
 
 	return response.data;
-}
+};
+
+export const updateUser = async (token: string, payload: object) => {
+	const response = await axios.put(
+		apiUrl + `/user`,
+		{
+			payload,
+		},
+		{
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		},
+	);
+
+	return response.data;
+};

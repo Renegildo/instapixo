@@ -34,7 +34,7 @@ const PostPage = async ({ params }: PostPageProps) => {
 				<div className="p-4 bg-slate-900">
 					<div className="flex gap-x-2 items-center">
 						<Avatar>
-							<AvatarImage src={post.owner.username} />
+							<AvatarImage src={post.owner.imageUrl} />
 							<AvatarFallback>
 								{post.owner.username[0].toUpperCase()}
 								{post.owner.username[1].toLowerCase()}

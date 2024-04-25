@@ -3,6 +3,7 @@ interface User {
 	username: string;
 	password: string;
 	bio: string;
+	imageUrl: string;
 
 	posts: Post[];
 	likes: Like[];

@@ -17,7 +17,7 @@ const CommentCard = ({
 			<div className="flex gap-x-2">
 				<div>
 					<Avatar className="translate-y-1">
-						<AvatarImage src="" />
+						<AvatarImage src={owner.imageUrl} />
 						<AvatarFallback>
 							{owner.username[0].toUpperCase()}
 							{owner.username[1].toLowerCase()}
