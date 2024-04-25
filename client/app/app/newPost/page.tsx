@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
 import { createPost, getSelf, uploadImage } from "@/lib/api";
-import { getCookie } from "@/lib/utils";
+import { apiUrl, getCookie } from "@/lib/utils";
 import { UploadCloud } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -52,7 +52,7 @@ const NewPost = () => {
 		if (imageFile) {
 			const uploadResponse = await uploadImage(imageFile, v4());
 
-			const newImageUrl = "https://instapixo-p6pq.vercel.app//uploads/" + uploadResponse.imageId + uploadResponse.extName;
+			const newImageUrl = apiUrl + "/uploads/" + uploadResponse.imageId + uploadResponse.extName;
 
 			setImageUrl(newImageUrl);
 

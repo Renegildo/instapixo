@@ -1,6 +1,5 @@
 import axios from 'axios';
-
-const apiUrl = "https://instapixo-p6pq.vercel.app/";
+import { apiUrl } from './utils';
 
 export const registerUser = async (
 	username: string,

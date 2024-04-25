@@ -11,13 +11,14 @@ import {
 } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input";
 import CopyButton from "./copy-button";
+import { apiUrl } from "@/lib/utils";
 
 interface ShareButtonProps {
 	postId: string;
 };
 
 const ShareButton = ({ postId }: ShareButtonProps) => {
-	const shareLink = `https://instapixo-p6pq.vercel.app//app/post/${postId}`
+	const shareLink = apiUrl + `/app/post/${postId}`
 
 	return (
 		<div className="float-right">

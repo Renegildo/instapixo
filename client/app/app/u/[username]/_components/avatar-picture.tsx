@@ -16,6 +16,7 @@ import { updateUser, uploadImage } from "@/lib/api";
 import { v4 } from "uuid";
 import { getCookie } from "@/lib/utils";
 import { toast } from "@/components/ui/use-toast";
+import { apiUrl } from "@/lib/utils";
 
 interface AvatarPictureProps {
 	username: string;
@@ -39,7 +40,7 @@ const AvatarPicture = ({
 
 			const uploadResponse = await uploadImage(imageFile, v4());
 			const response = await updateUser(token, {
-				imageUrl: "https://instapixo-p6pq.vercel.app//uploads/" + uploadResponse.imageId + uploadResponse.extName,
+				imageUrl: apiUrl + "/uploads/" + uploadResponse.imageId + uploadResponse.extName,
 			});
 			toast({
 				description: response.msg,
