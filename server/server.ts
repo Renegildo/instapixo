@@ -104,7 +104,9 @@ app.post("/register", express.json(), async (req, res) => {
 		},
 	});
 
-	res.json({ msg: `User ${user.username} created successfully` });
+	const token = sign({ username, password }, process.env.JWT_SECRET!);
+
+	res.json({ token });
 });
 
 app.post("/login", express.json(), async (req, res) => {
