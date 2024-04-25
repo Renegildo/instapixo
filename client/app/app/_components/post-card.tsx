@@ -24,7 +24,7 @@ const PostCard = ({ post, userId }: PostCardProps) => {
 
 	return (
 		<div className="relative">
-			<div className="bg-slate-900 p-5 rounded-lg flex flex-col gap-y-5 shadow">
+			<div className="bg-slate-900 p-5 rounded-lg flex flex-col gap-y-5 shadow md:mx-32 lg:mx-40">
 				<div>
 					<ShareButton postId={post.id} />
 					<h2 className="font-medium text-md">
