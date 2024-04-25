@@ -9,14 +9,17 @@ import ProfilePicture from "./_components/profile-picture";
 
 const AppLayout = ({ children }: { children: React.ReactNode }) => {
 	const [self, setSelf] = useState<User | null>(null);
-	const [isPending, startTransition] = useTransition();
+	const [isPending, setIsPending] = useState<boolean>(false);
 
 	useEffect(() => {
-		const initSelf = () => {
+		const initSelf = async () => {
+			setIsPending(true);
+
 			const token = getCookie("token");
-			startTransition(() => {
-				getSelf(token).then(newSelf => setSelf(newSelf));
-			});
+			const newSelf = await getSelf(token);
+			setSelf(newSelf);
+
+			setIsPending(false);
 		};
 
 		initSelf();

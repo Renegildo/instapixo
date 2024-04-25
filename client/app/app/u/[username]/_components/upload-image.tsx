@@ -9,7 +9,7 @@ interface UploadImageProps {
 	setImageFile: string;
 }
 
-const UploadImage = ({ setImageFile }) => {
+const UploadImage = ({ setImageFile }: UploadImageProps) => {
 const [previewImage, setPreviewImage] = useState<string>('');
 
 	return (

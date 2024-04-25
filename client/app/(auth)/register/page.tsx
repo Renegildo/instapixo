@@ -2,7 +2,9 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { registerUser } from "@/lib/api";
+import Link from "next/link";
 import { FormEvent, useState } from "react";
 
 const Register = () => {
@@ -16,18 +18,34 @@ const Register = () => {
 	}
 
 	return (
-		<main>
-			<form onSubmit={(e) => onSubmit(e)}>
-				<Input
-					placeholder="username"
-					onChange={(e) => setUsername(e.target.value)}
-				/>
-				<Input
-					placeholder="password"
-					onChange={(e) => setPassword(e.target.value)}
-				/>
+		<main className="h-[100vh] w-full flex items-center justify-center">
+			<form className="bg-slate-900 p-10 flex flex-col gap-y-4 rounded-lg" onSubmit={(e) => onSubmit(e)}>
+				<h1 className="text-2xl font-bold">Create your account</h1>
+				<div>
+					<Label htmlFor="username">Username</Label>
+					<Input
+						id="username"
+						placeholder="username"
+						onChange={(e) => setUsername(e.target.value)}
+					/>
+				</div>
+
+				<div>
+					<Label htmlFor="password">Password</Label>
+					<Input
+						id="password"
+						placeholder="password"
+						onChange={(e) => setPassword(e.target.value)}
+					/>
+				</div>
+
 				<Button type="submit">
 					Register
+				</Button>
+				<Button variant="ghost" asChild>
+					<Link href="/login">
+						Already has an account?
+					</Link>
 				</Button>
 			</form>
 		</main>
