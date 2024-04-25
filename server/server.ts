@@ -206,6 +206,16 @@ app.get("/post/:postId", async (req, res) => {
 	res.json({ post });
 });
 
+app.delete("/post/:postId", passport.authenticate("jwt"), async (req, res) => {
+	const { postId } = req.params;
+
+	const response = await db.post.delete({
+		where: { id: postId }
+	});
+
+	res.json({ msg: "Post deleted successfully" });
+});
+
 // ===============
 // Comments routes
 // ===============

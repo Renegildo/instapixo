@@ -11,6 +11,8 @@ import Link from "next/link";
 import ShareButton from "./share-button";
 import LikeButton from "./like-button";
 import { Skeleton } from "@/components/ui/skeleton";
+import { cn } from "@/lib/utils";
+import DeletePostButton from "./delete-post-button";
 
 interface PostCardProps {
 	post: Post;
@@ -68,11 +70,19 @@ const PostCard = ({ post, userId }: PostCardProps) => {
 								</span>
 							</Link>
 						</Button>
-						<LikeButton initialLikes={post.likes} postId={post.id} />
+						{!isSelf && (
+							<LikeButton initialLikes={post.likes} postId={post.id} />
+						)}
+						{isSelf && (
+							<DeletePostButton postId={post.id} />
+						)}
 					</div>
 				</div>
 			</div>
-			<div className="absolute bg-transparent w-full h-full top-0 left-0 -z-10 rounded-lg" />
+			<div className={cn(
+				"absolute bg-blue-300 w-full h-full top-2 left-2 -z-10 rounded-lg",
+				isSelf ? "block" : "hidden"
+			)} />
 		</div>
 	);
 };

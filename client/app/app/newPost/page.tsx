@@ -61,17 +61,6 @@ const NewPost = () => {
 				description: `${postResponse.msg}`
 			});
 		}
-
-		try {
-			const postResponse = await createPost(content, ownerId, imageUrl);
-			toast({
-				description: `${postResponse.msg}`
-			});
-		} catch (error) {
-			toast({
-				description: `Something went wrong, please try again`
-			});
-		}
 	};
 
 	useEffect(() => {

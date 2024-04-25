@@ -260,3 +260,16 @@ export const updateUser = async (token: string, payload: object) => {
 
 	return response.data;
 };
+
+export const deletePost = async (postId: string, token: string) => {
+	const response = await axios.delete(
+		apiUrl + `/post/${postId}`,
+		{
+			headers: {
+				Authorization: `Bearer ${token}`
+			}
+		},
+	);
+
+	return response.data;
+}
