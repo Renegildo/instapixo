@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { getSelf, postComment } from "@/lib/api";
 import { getCookie } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
 
 interface CommentInputProps {
@@ -14,6 +15,8 @@ const CommentInput = ({ postId }: CommentInputProps) => {
 	const [self, setSelf] = useState(null);
 	const [isPending, setIsPending] = useState<boolean>(false);
 	const [content, setContent] = useState<string>('');
+
+	const router = useRouter();
 
 	useEffect(() => {
 		const initSelf = async () => {
@@ -35,6 +38,7 @@ const CommentInput = ({ postId }: CommentInputProps) => {
 		console.log(response);
 		setContent('');
 		setIsPending(false);
+		router.refresh();
 	}
 
 	return (

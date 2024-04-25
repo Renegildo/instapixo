@@ -72,6 +72,7 @@ const PostPage = async ({ params }: PostPageProps) => {
 									key={comment.id}
 									content={comment.content}
 									owner={comment.owner}
+									commentId={comment.id}
 								/>
 							))
 						)}

@@ -241,6 +241,18 @@ app.post("/comment", passport.authenticate("jwt"), express.json(), async (req, r
 	res.json({ msg: "Comment created successfully" });
 });
 
+app.delete(`/comment/:commentId`, passport.authenticate("jwt"), async (req, res) => {
+	const { commentId } = req.params;
+
+	const response = await db.comment.delete({
+		where: {
+			id: commentId,
+		},
+	});
+
+	res.status(200).json({ msg: "Comment deleted successfully" });
+});
+
 // ===========
 // Like routes
 // ===========

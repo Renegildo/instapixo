@@ -232,3 +232,16 @@ export const removeLike = async (postId: string, token: string) => {
 
 	return response.data;
 };
+
+export const removeComment = async (commentId: string, token: string) => {
+	const response = await axios.delete(
+		apiUrl + `/comment/${commentId}`,
+		{
+			headers: {
+				Authorization: `Bearer ${token}`
+			},
+		},
+	);
+
+	return response.data;
+}

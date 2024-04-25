@@ -4,17 +4,14 @@ import DeleteComment from "./delete-comment";
 interface CommentCardProps {
 	content: string;
 	owner: User;
+	commentId: string;
 }
 
 const CommentCard = ({
 	content,
-	owner
+	owner,
+	commentId
 }: CommentCardProps) => {
-	console.log("Comment owner: ");
-	console.log(owner);
-
-	if (!owner) return <p>loading...</p>
-
 	return (
 		<div className="flex justify-between">
 			<div className="flex gap-x-2">
@@ -37,7 +34,7 @@ const CommentCard = ({
 				</div>
 			</div>
 
-			<DeleteComment ownerId={owner.id} />
+			<DeleteComment commentId={commentId} ownerId={owner.id} />
 		</div>
 	);
 };
