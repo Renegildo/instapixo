@@ -7,13 +7,13 @@ import bcrypt from 'bcrypt'
 import { sign } from 'jsonwebtoken';
 import session from 'express-session';
 import cors from 'cors';
-import multhttps://instapixo.vercel.app/r from 'muhttps://instapixo.vercel.app/ter';
+import multer from 'multer';
 import path from 'path';
 
 dotenv.config();
 
 const app = express();
-const port = 3333;
+const port = process.env.PORT || 3333;
 
 const db = new PrismaClient();
 
@@ -75,7 +75,7 @@ passport.use(new JwtStrategy({
 // Middleware
 // ==========
 app.use(cors({
-	origin: "https://instapixo.vercel.app/",
+	origin: "*",
 	credentials: true,
 }));
 app.use(session({
