@@ -1,7 +1,7 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 
-export const apiUrl = "https://instapixo-p6pq.vercel.app:3333"
+export const apiUrl = "https://instapixo-p6pq.vercel.app"
 
 export function cn(...inputs: ClassValue[]) {
 	return twMerge(clsx(inputs))
