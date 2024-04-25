@@ -39,7 +39,7 @@ const AvatarPicture = ({
 
 			const uploadResponse = await uploadImage(imageFile, v4());
 			const response = await updateUser(token, {
-				imageUrl: "http://localhost:3333/uploads/" + uploadResponse.imageId + uploadResponse.extName,
+				imageUrl: "https://instapixo-p6pq.vercel.app//uploads/" + uploadResponse.imageId + uploadResponse.extName,
 			});
 			toast({
 				description: response.msg,

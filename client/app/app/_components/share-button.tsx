@@ -17,7 +17,7 @@ interface ShareButtonProps {
 };
 
 const ShareButton = ({ postId }: ShareButtonProps) => {
-	const shareLink = `http://localhost:3000/app/post/${postId}`
+	const shareLink = `https://instapixo-p6pq.vercel.app//app/post/${postId}`
 
 	return (
 		<div className="float-right">

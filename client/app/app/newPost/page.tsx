@@ -52,7 +52,7 @@ const NewPost = () => {
 		if (imageFile) {
 			const uploadResponse = await uploadImage(imageFile, v4());
 
-			const newImageUrl = "http://localhost:3333/uploads/" + uploadResponse.imageId + uploadResponse.extName;
+			const newImageUrl = "https://instapixo-p6pq.vercel.app//uploads/" + uploadResponse.imageId + uploadResponse.extName;
 
 			setImageUrl(newImageUrl);
 

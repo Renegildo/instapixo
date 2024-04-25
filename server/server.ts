@@ -12,8 +12,6 @@ import path from 'path';
 
 dotenv.config();
 
-const clientUrl = "http://localhost:3000";
-
 const app = express();
 const port = 3333;
 
