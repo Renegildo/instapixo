@@ -51,7 +51,7 @@ const App = () => {
 					<ul className="mx-10 md:mx-32 lg:mx-40 flex flex-col gap-y-10">
 						{
 							posts?.map(post => (
-								<PostCard post={post} key={post.id} />
+								<PostCard userId={user.id} post={post} key={post.id} />
 							))
 						}
 					</ul>

@@ -14,9 +14,12 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 interface PostCardProps {
 	post: Post;
+	userId: string;
 }
 
-const PostCard = ({ post }: PostCardProps) => {
+const PostCard = ({ post, userId }: PostCardProps) => {
+	let isSelf = post.ownerId === userId;
+
 	return (
 		<div className="relative">
 			<div className="bg-slate-900 p-5 rounded-lg flex flex-col gap-y-5 shadow">

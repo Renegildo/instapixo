@@ -3,14 +3,14 @@
 import { Input } from "@/components/ui/input";
 import { UploadCloud } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 
 interface UploadImageProps {
-	setImageFile: string;
+	setImageFile: Dispatch<SetStateAction<File | null>>;
 }
 
 const UploadImage = ({ setImageFile }: UploadImageProps) => {
-const [previewImage, setPreviewImage] = useState<string>('');
+	const [previewImage, setPreviewImage] = useState<string>('');
 
 	return (
 		<label className="relative w-64 aspect-square justify-center mt-[24px]" htmlFor="image">

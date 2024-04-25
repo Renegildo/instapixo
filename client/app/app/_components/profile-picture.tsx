@@ -14,19 +14,23 @@ import { Plus, User } from "lucide-react";
 
 
 interface ProfilePictureProps {
-	self: User;
+	imageUrl: string;
+	username: string;
 }
 
-const ProfilePicture = ({ self }: ProfilePictureProps) => {
+const ProfilePicture = ({
+	imageUrl,
+	username,
+}: ProfilePictureProps) => {
 	return (
 		<>
 			<DropdownMenu>
 				<DropdownMenuTrigger>
 					<Avatar>
-						<AvatarImage src={self.imageUrl} />
+						<AvatarImage src={imageUrl} />
 						<AvatarFallback>
-							{self.username[0].toUpperCase()}
-							{self.username[1].toLowerCase()}
+							{username[0].toUpperCase()}
+							{username[1].toLowerCase()}
 						</AvatarFallback>
 					</Avatar>
 				</DropdownMenuTrigger>
@@ -37,7 +41,7 @@ const ProfilePicture = ({ self }: ProfilePictureProps) => {
 					<DropdownMenuSeparator />
 					<DropdownMenuItem asChild className="cursor-pointer">
 						<Link
-							href={`/app/u/${self.username}`}
+							href={`/app/u/${username}`}
 							className="flex gap-x-2"
 						>
 							<User />

@@ -26,12 +26,12 @@ const Login = () => {
 				<h1 className="text-2xl font-bold">Welcome back!</h1>
 				<div>
 					<Label htmlFor="username">Username</Label>
-					<Input id="username" placeholder="username" onChange={(e) => setUsername(e.target.value)} />
+					<Input required id="username" placeholder="username" onChange={(e) => setUsername(e.target.value)} />
 				</div>
 
 				<div>
 					<Label htmlFor="password">Password</Label>
-					<Input id="password" type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)} />
+					<Input required id="password" type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)} />
 				</div>
 
 				<Button className="w-full" type="submit">

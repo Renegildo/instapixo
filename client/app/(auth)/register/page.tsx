@@ -5,17 +5,21 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { registerUser } from "@/lib/api";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
 
 const Register = () => {
 	const [password, setPassword] = useState<string>('')
 	const [username, setUsername] = useState<string>('')
 
+	const router = useRouter();
+
 	const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		const user = await registerUser(username, password);
-		console.log(user);
-	}
+		const response = await registerUser(username, password);
+		document.cookie = `token=${response.token}; path=/;`;
+		router.push("/app");
+	};
 
 	return (
 		<main className="h-[100vh] w-full flex items-center justify-center">
@@ -27,6 +31,9 @@ const Register = () => {
 						id="username"
 						placeholder="username"
 						onChange={(e) => setUsername(e.target.value)}
+						required
+						minLength={3}
+						maxLength={50}
 					/>
 				</div>
 
@@ -35,7 +42,11 @@ const Register = () => {
 					<Input
 						id="password"
 						placeholder="password"
+						type="password"
 						onChange={(e) => setPassword(e.target.value)}
+						required
+						maxLength={128}
+						minLength={3}
 					/>
 				</div>
 

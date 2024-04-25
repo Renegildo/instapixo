@@ -34,8 +34,8 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
 					</Link>
 				</Button>
 				<div>
-					{self ? (
-						<ProfilePicture self={self} />
+					{self && self.username ? (
+						<ProfilePicture username={self.username} imageUrl={self.imageUrl} />
 					) : (
 						<Button asChild>
 							<Link href="/login">
