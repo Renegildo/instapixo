@@ -216,6 +216,7 @@ app.get("/comments/:postId", async (req, res) => {
 			owner: {
 				select: {
 					username: true,
+					id: true,
 				}
 			}
 		}
@@ -269,6 +270,21 @@ app.get("/hasLiked/:postId", passport.authenticate("jwt"), async (req, res) => {
 	});
 
 	res.json({ hasLiked: !!like });
+});
+
+app.delete("/like/:postId", passport.authenticate("jwt"), express.json(), async (req, res) => {
+	const { postId } = req.params;
+
+	const response = await db.like.delete({
+		where: {
+			likerId_postId: {
+				likerId: req.user!.id,
+				postId,
+			},
+		},
+	});
+
+	res.status(200).json({ msg: "Like removed successfully" })
 });
 
 // ===========

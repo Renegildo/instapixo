@@ -65,7 +65,7 @@ const PostCard = ({ post }: PostCardProps) => {
 								</span>
 							</Link>
 						</Button>
-						<LikeButton likes={post.likes} postId={post.id} />
+						<LikeButton initialLikes={post.likes} postId={post.id} />
 					</div>
 				</div>
 			</div>

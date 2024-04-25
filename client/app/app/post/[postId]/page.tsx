@@ -54,7 +54,9 @@ const PostPage = async ({ params }: PostPageProps) => {
 					</p>
 				</div>
 				<div className="p-4 bg-slate-900 border-t">
+
 					<CommentInput postId={post.id} />
+
 					<div className="space-y-5 mt-5">
 						{comments.length === 0 && (
 							<div className="text-center text-xl text-muted-foreground font-bold mt-3 flex flex-col items-center justify-center">
@@ -65,7 +67,7 @@ const PostPage = async ({ params }: PostPageProps) => {
 							</div>
 						)}
 						{comments.length > 0 && (
-							comments.map(comment => (
+							comments.map((comment: Comment) => (
 								<CommentCard
 									key={comment.id}
 									content={comment.content}

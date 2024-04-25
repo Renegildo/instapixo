@@ -34,7 +34,7 @@ const App = () => {
 
 	return (
 		<div>
-			{!user ? (
+			{!user || !posts ? (
 				<>
 					<Skeleton className="h-10 w-56 my-5 ml-10" />
 					<ul className="mx-10 md:mx-32 lg:mx-40 flex flex-col gap-y-10">

@@ -99,8 +99,7 @@ export const getComments = async (postId: string) => {
 		apiUrl + `/comments/${postId}`,
 	);
 
-	console.log("Comments: ");
-	console.log(response.data.comments);
+	return response.data.comments;
 };
 
 export const postComment = async (
@@ -219,4 +218,17 @@ export const isFollowing = async (userId: string, token: string) => {
 	);
 
 	return response.data.isFollowing;
+};
+
+export const removeLike = async (postId: string, token: string) => {
+	const response = await axios.delete(
+		apiUrl + `/like/${postId}`,
+		{
+			headers: {
+				Authorization: `Bearer ${token}`
+			},
+		},
+	);
+
+	return response.data;
 };
